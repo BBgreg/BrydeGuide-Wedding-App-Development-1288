@@ -38,22 +38,21 @@ const VendorCard = ({ vendor, onSave, onReject, onContact, saved = false }) => {
           }`}
           onLoad={() => setImageLoaded(true)}
         />
-        
         {!imageLoaded && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-sage-500"></div>
+            <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary-500"></div>
           </div>
         )}
-
+        
         {/* Distance Badge */}
         <div className="absolute top-3 left-3 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-medium text-gray-700">
           <SafeIcon icon={FiMapPin} className="inline mr-1" />
           {vendor.distance_from_milwaukee} mi
         </div>
-
+        
         {/* Rating Badge */}
         <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full px-3 py-1 text-xs font-medium text-gray-700">
-          <SafeIcon icon={FiStar} className="inline mr-1 text-yellow-500" />
+          <SafeIcon icon={FiStar} className="inline mr-1 text-accent-500" />
           {vendor.rating}
         </div>
       </div>
@@ -61,11 +60,11 @@ const VendorCard = ({ vendor, onSave, onReject, onContact, saved = false }) => {
       {/* Content Section */}
       <div className="p-6">
         <div className="flex justify-between items-start mb-3">
-          <h3 className="text-xl font-nunito font-semibold text-gray-800 line-clamp-1">
+          <h3 className="text-xl font-display font-semibold text-gray-800 line-clamp-1">
             {vendor.business_name}
           </h3>
           <div className="text-right">
-            <div className="text-lg font-bold text-sage-600">
+            <div className="text-lg font-bold text-primary-600">
               {formatPrice(vendor.price_minimum, vendor.price_maximum)}
             </div>
           </div>
@@ -77,13 +76,12 @@ const VendorCard = ({ vendor, onSave, onReject, onContact, saved = false }) => {
             {vendor.style_tags?.slice(0, 3).map((tag, index) => (
               <span
                 key={index}
-                className="px-2 py-1 bg-sage-100 text-sage-700 text-xs rounded-full"
+                className="px-2 py-1 bg-primary-100 text-primary-700 text-xs rounded-full"
               >
                 {tag}
               </span>
             ))}
           </div>
-          
           <p className="text-gray-600 text-sm line-clamp-2">
             {vendor.description}
           </p>
@@ -96,7 +94,7 @@ const VendorCard = ({ vendor, onSave, onReject, onContact, saved = false }) => {
             <ul className="text-sm text-gray-600">
               {vendor.specialties.slice(0, 3).map((specialty, index) => (
                 <li key={index} className="flex items-center mb-1">
-                  <div className="w-1 h-1 bg-sage-400 rounded-full mr-2"></div>
+                  <div className="w-1 h-1 bg-primary-400 rounded-full mr-2"></div>
                   {specialty}
                 </li>
               ))}
@@ -110,13 +108,11 @@ const VendorCard = ({ vendor, onSave, onReject, onContact, saved = false }) => {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={() => onSave(vendor)}
-            className={`
-              flex-1 py-2 px-4 rounded-lg font-medium transition-colors
-              ${saved 
-                ? 'bg-sage-500 text-white' 
-                : 'bg-sage-100 text-sage-700 hover:bg-sage-200'
-              }
-            `}
+            className={`flex-1 py-2 px-4 rounded-lg font-medium transition-colors ${
+              saved 
+                ? 'bg-primary-500 text-white' 
+                : 'bg-primary-100 text-primary-700 hover:bg-primary-200'
+            }`}
           >
             <SafeIcon icon={FiHeart} className="inline mr-2" />
             {saved ? 'Saved' : 'Save'}
@@ -137,7 +133,7 @@ const VendorCard = ({ vendor, onSave, onReject, onContact, saved = false }) => {
         <div className="flex space-x-2">
           <button
             onClick={() => onContact(vendor)}
-            className="flex-1 py-2 px-3 bg-rose-100 text-rose-700 rounded-lg text-sm font-medium hover:bg-rose-200 transition-colors"
+            className="flex-1 py-2 px-3 bg-accent-100 text-accent-700 rounded-lg text-sm font-medium hover:bg-accent-200 transition-colors"
           >
             <SafeIcon icon={FiPhone} className="inline mr-1" />
             Contact
@@ -154,7 +150,7 @@ const VendorCard = ({ vendor, onSave, onReject, onContact, saved = false }) => {
           {vendor.website_url && (
             <button
               onClick={() => window.open(vendor.website_url, '_blank')}
-              className="py-2 px-3 bg-blue-100 text-blue-700 rounded-lg text-sm font-medium hover:bg-blue-200 transition-colors"
+              className="py-2 px-3 bg-sage-100 text-sage-700 rounded-lg text-sm font-medium hover:bg-sage-200 transition-colors"
             >
               <SafeIcon icon={FiExternalLink} />
             </button>
@@ -187,7 +183,7 @@ const VendorCard = ({ vendor, onSave, onReject, onContact, saved = false }) => {
                   )}
                 </div>
               </div>
-
+              
               {vendor.capacity_minimum && vendor.capacity_maximum && (
                 <div>
                   <h4 className="text-sm font-medium text-gray-700 mb-1">Capacity</h4>
@@ -196,7 +192,7 @@ const VendorCard = ({ vendor, onSave, onReject, onContact, saved = false }) => {
                   </p>
                 </div>
               )}
-
+              
               <div>
                 <h4 className="text-sm font-medium text-gray-700 mb-1">Reviews</h4>
                 <p className="text-sm text-gray-600">

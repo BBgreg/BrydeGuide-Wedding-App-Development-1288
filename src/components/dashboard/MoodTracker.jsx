@@ -74,15 +74,9 @@ const MoodTracker = () => {
     return FiFrown
   }
 
-  const getMoodColor = (level) => {
-    if (level >= 8) return 'text-green-500'
-    if (level >= 6) return 'text-yellow-500'
-    return 'text-red-500'
-  }
-
   const getStressColor = (level) => {
     if (level <= 3) return 'text-green-500'
-    if (level <= 6) return 'text-yellow-500'
+    if (level <= 6) return 'text-accent-500'
     return 'text-red-500'
   }
 
@@ -105,10 +99,10 @@ const MoodTracker = () => {
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
       <div className="flex items-center justify-between mb-4">
-        <h3 className="text-lg font-nunito font-semibold text-gray-800">
+        <h3 className="text-lg font-display font-semibold text-gray-800">
           Mood Check-in
         </h3>
-        <SafeIcon icon={FiHeart} className="text-rose-400" />
+        <SafeIcon icon={FiHeart} className="text-primary-500" />
       </div>
 
       {!showMoodCheck ? (
@@ -136,7 +130,7 @@ const MoodTracker = () => {
               <div
                 className={`h-2 rounded-full transition-all duration-300 ${
                   currentMood.stress <= 3 ? 'bg-green-500' : 
-                  currentMood.stress <= 6 ? 'bg-yellow-500' : 'bg-red-500'
+                  currentMood.stress <= 6 ? 'bg-accent-500' : 'bg-red-500'
                 }`}
                 style={{ width: `${(currentMood.stress / 10) * 100}%` }}
               />
@@ -153,7 +147,7 @@ const MoodTracker = () => {
                     key={index}
                     className={`w-2 h-6 rounded-sm ${
                       mood.stress_level <= 3 ? 'bg-green-400' :
-                      mood.stress_level <= 6 ? 'bg-yellow-400' : 'bg-red-400'
+                      mood.stress_level <= 6 ? 'bg-accent-400' : 'bg-red-400'
                     }`}
                     title={`${mood.check_in_date}: ${mood.stress_level}/10`}
                   />
@@ -165,7 +159,7 @@ const MoodTracker = () => {
           {shouldShowMoodCheck() && (
             <button
               onClick={() => setShowMoodCheck(true)}
-              className="w-full py-2 px-4 bg-sage-100 text-sage-700 rounded-lg hover:bg-sage-200 transition-colors text-sm font-medium"
+              className="w-full py-2 px-4 bg-primary-100 text-primary-700 rounded-lg hover:bg-primary-200 transition-colors text-sm font-medium"
             >
               Update Mood Check-in
             </button>
@@ -247,7 +241,7 @@ const MoodTracker = () => {
             </button>
             <button
               onClick={handleMoodSubmit}
-              className="flex-1 py-2 px-3 bg-sage-500 text-white rounded-lg hover:bg-sage-600 transition-colors text-sm"
+              className="flex-1 py-2 px-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors text-sm"
             >
               Save
             </button>

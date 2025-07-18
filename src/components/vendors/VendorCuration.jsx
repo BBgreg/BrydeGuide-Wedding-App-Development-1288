@@ -94,7 +94,7 @@ const VendorCuration = () => {
   }
 
   const getCurrentCategoryOrder = () => {
-    const categories = ['venue', 'photography', 'catering', 'florist', 'music', 'cake', 'transportation', 'officiant']
+    const categories = ['wedding_planner', 'venue', 'photography', 'videography', 'catering', 'dj', 'lighting', 'photo_booth', 'florist', 'music', 'cake', 'transportation', 'officiant']
     return categories.indexOf(currentCategory) + 1
   }
 
@@ -109,7 +109,7 @@ const VendorCuration = () => {
     return (
       <div className="flex items-center justify-center py-12">
         <div className="text-center">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-sage-500 mx-auto mb-4"></div>
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary-500 mx-auto mb-4"></div>
           <p className="text-gray-600">Finding your perfect vendors...</p>
         </div>
       </div>
@@ -136,8 +136,8 @@ const VendorCuration = () => {
       
       {/* Category Header */}
       <div className="text-center">
-        <h2 className="text-2xl font-nunito font-bold text-gray-800 mb-2">
-          {currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1)} Options
+        <h2 className="text-2xl font-display font-bold text-gray-800 mb-2">
+          {currentCategory.charAt(0).toUpperCase() + currentCategory.slice(1).replace('_', ' ')} Options
         </h2>
         <p className="text-gray-600">
           We've curated exactly 3 vendors that match your preferences and budget
@@ -163,7 +163,7 @@ const VendorCuration = () => {
           <p className="text-gray-600 mb-4">No vendors found for this category</p>
           <button
             onClick={handleRecurate}
-            className="bg-sage-500 text-white px-6 py-2 rounded-lg hover:bg-sage-600 transition-colors"
+            className="bg-primary-500 text-white px-6 py-2 rounded-lg hover:bg-primary-600 transition-colors"
           >
             <SafeIcon icon={FiRefreshCw} className="inline mr-2" />
             Try Different Criteria
@@ -184,7 +184,7 @@ const VendorCuration = () => {
         {savedVendors.size > 0 && (
           <button
             onClick={() => setShowConfidenceModal(true)}
-            className="flex items-center px-6 py-3 bg-sage-500 text-white rounded-lg hover:bg-sage-600 transition-colors"
+            className="flex items-center px-6 py-3 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
           >
             Continue to Next Category
             <SafeIcon icon={FiArrowRight} className="ml-2" />

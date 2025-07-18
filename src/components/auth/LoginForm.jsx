@@ -42,8 +42,8 @@ const LoginForm = ({ onToggleMode }) => {
     >
       <div className="text-center mb-8">
         <div className="flex items-center justify-center mb-4">
-          <SafeIcon icon={FiHeart} className="text-4xl text-rose-400 mr-2" />
-          <h1 className="text-3xl font-nunito font-bold text-gray-800">BrydeGuide</h1>
+          <SafeIcon icon={FiHeart} className="text-4xl text-primary-500 mr-2" />
+          <h1 className="text-3xl font-display font-bold text-gray-800">BrydeGuide</h1>
         </div>
         <p className="text-gray-600">Welcome back! Sign in to continue your wedding planning journey.</p>
       </div>
@@ -60,7 +60,7 @@ const LoginForm = ({ onToggleMode }) => {
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 transition-colors"
+              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
               placeholder="Enter your email"
               required
             />
@@ -78,7 +78,7 @@ const LoginForm = ({ onToggleMode }) => {
               type={showPassword ? 'text' : 'password'}
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 transition-colors"
+              className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
               placeholder="Enter your password"
               required
             />
@@ -95,7 +95,7 @@ const LoginForm = ({ onToggleMode }) => {
         <button
           type="submit"
           disabled={loading}
-          className="w-full bg-sage-400 text-white py-3 rounded-lg font-medium hover:bg-sage-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+          className="w-full bg-primary-500 text-white py-3 rounded-lg font-medium hover:bg-primary-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
         >
           {loading ? 'Signing In...' : 'Sign In'}
         </button>
@@ -130,7 +130,7 @@ const LoginForm = ({ onToggleMode }) => {
           Don't have an account?{' '}
           <button
             onClick={onToggleMode}
-            className="text-sage-500 hover:text-sage-600 font-medium"
+            className="text-primary-500 hover:text-primary-600 font-medium"
           >
             Sign Up
           </button>

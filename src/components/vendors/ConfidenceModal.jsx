@@ -16,7 +16,7 @@ const ConfidenceModal = ({ vendor, onSubmit, onClose }) => {
 
   const getConfidenceColor = (score) => {
     if (score >= 8) return 'text-green-600'
-    if (score >= 6) return 'text-yellow-600'
+    if (score >= 6) return 'text-accent-600'
     return 'text-red-600'
   }
 
@@ -46,7 +46,7 @@ const ConfidenceModal = ({ vendor, onSubmit, onClose }) => {
         className="bg-white rounded-xl shadow-xl max-w-md w-full p-6"
       >
         <div className="flex justify-between items-center mb-6">
-          <h3 className="text-xl font-nunito font-semibold text-gray-800">
+          <h3 className="text-xl font-display font-semibold text-gray-800">
             How confident are you?
           </h3>
           <button
@@ -59,7 +59,7 @@ const ConfidenceModal = ({ vendor, onSubmit, onClose }) => {
 
         <div className="mb-6">
           <div className="flex items-center mb-3">
-            <SafeIcon icon={FiHeart} className="text-rose-400 mr-2" />
+            <SafeIcon icon={FiHeart} className="text-primary-500 mr-2" />
             <span className="font-medium text-gray-700">
               {vendor.business_name}
             </span>
@@ -74,7 +74,6 @@ const ConfidenceModal = ({ vendor, onSubmit, onClose }) => {
             <label className="block text-sm font-medium text-gray-700 mb-3">
               Confidence Level: {confidence}/10
             </label>
-            
             <div className="mb-3">
               <input
                 type="range"
@@ -88,12 +87,10 @@ const ConfidenceModal = ({ vendor, onSubmit, onClose }) => {
                 }}
               />
             </div>
-            
             <div className="flex justify-between text-xs text-gray-500 mb-2">
               <span>Not confident</span>
               <span>Very confident</span>
             </div>
-            
             <div className={`text-center font-medium ${getConfidenceColor(confidence)}`}>
               {getConfidenceLabel(confidence)}
             </div>
@@ -108,7 +105,7 @@ const ConfidenceModal = ({ vendor, onSubmit, onClose }) => {
               value={notes}
               onChange={(e) => setNotes(e.target.value)}
               rows="3"
-              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 resize-none"
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 resize-none"
               placeholder="What made this decision easy or difficult for you?"
             />
           </div>
@@ -123,7 +120,7 @@ const ConfidenceModal = ({ vendor, onSubmit, onClose }) => {
             </button>
             <button
               type="submit"
-              className="flex-1 py-2 px-4 bg-sage-500 text-white rounded-lg hover:bg-sage-600 transition-colors"
+              className="flex-1 py-2 px-4 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
             >
               Save Decision
             </button>

@@ -61,8 +61,8 @@ const SignupForm = ({ onToggleMode }) => {
     >
       <div className="text-center mb-8">
         <div className="flex items-center justify-center mb-4">
-          <SafeIcon icon={FiHeart} className="text-4xl text-rose-400 mr-2" />
-          <h1 className="text-3xl font-nunito font-bold text-gray-800">BrydeGuide</h1>
+          <SafeIcon icon={FiHeart} className="text-4xl text-primary-500 mr-2" />
+          <h1 className="text-3xl font-display font-bold text-gray-800">BrydeGuide</h1>
         </div>
         <p className="text-gray-600">Create your account and start your stress-free wedding planning journey!</p>
       </div>
@@ -81,7 +81,7 @@ const SignupForm = ({ onToggleMode }) => {
                 type="text"
                 value={formData.name}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 transition-colors"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
                 placeholder="Enter your full name"
                 required
               />
@@ -100,7 +100,7 @@ const SignupForm = ({ onToggleMode }) => {
                 type="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 transition-colors"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
                 placeholder="Enter your email"
                 required
               />
@@ -119,7 +119,7 @@ const SignupForm = ({ onToggleMode }) => {
                 type={showPassword ? 'text' : 'password'}
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 transition-colors"
+                className="w-full pl-10 pr-12 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
                 placeholder="Create a password (min 6 characters)"
                 required
                 minLength={6}
@@ -146,7 +146,7 @@ const SignupForm = ({ onToggleMode }) => {
                 type="tel"
                 value={formData.phone}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 transition-colors"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
                 placeholder="Enter your phone number"
               />
             </div>
@@ -164,7 +164,7 @@ const SignupForm = ({ onToggleMode }) => {
                 type="date"
                 value={formData.wedding_date}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 transition-colors"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
               />
             </div>
           </div>
@@ -181,7 +181,7 @@ const SignupForm = ({ onToggleMode }) => {
                 type="text"
                 value={formData.wedding_location}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 transition-colors"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
                 placeholder="Milwaukee, WI"
               />
             </div>
@@ -199,7 +199,7 @@ const SignupForm = ({ onToggleMode }) => {
                 type="number"
                 value={formData.guest_count_estimate}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 transition-colors"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
                 placeholder="100"
                 min="1"
               />
@@ -218,7 +218,7 @@ const SignupForm = ({ onToggleMode }) => {
                 type="number"
                 value={formData.budget_total}
                 onChange={handleChange}
-                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 transition-colors"
+                className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
                 placeholder="30000"
                 min="1"
               />
@@ -235,7 +235,7 @@ const SignupForm = ({ onToggleMode }) => {
             name="style_preference"
             value={formData.style_preference}
             onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sage-500 focus:border-sage-500 transition-colors"
+            className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-colors"
             required
           >
             <option value="classic">Classic & Timeless</option>
@@ -249,7 +249,7 @@ const SignupForm = ({ onToggleMode }) => {
           <button
             type="submit"
             disabled={loading}
-            className="flex-1 bg-sage-400 text-white py-3 rounded-lg font-medium hover:bg-sage-500 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
+            className="flex-1 bg-primary-500 text-white py-3 rounded-lg font-medium hover:bg-primary-600 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
           >
             {loading ? 'Creating Account...' : 'Create Account'}
           </button>
@@ -261,7 +261,7 @@ const SignupForm = ({ onToggleMode }) => {
           Already have an account?{' '}
           <button
             onClick={onToggleMode}
-            className="text-sage-500 hover:text-sage-600 font-medium"
+            className="text-primary-500 hover:text-primary-600 font-medium"
           >
             Sign In
           </button>

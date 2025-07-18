@@ -21,15 +21,15 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <SafeIcon icon={FiHeart} className="text-2xl text-rose-400 mr-2" />
-            <h1 className="text-xl font-nunito font-bold text-gray-800">BrydeGuide</h1>
+            <SafeIcon icon={FiHeart} className="text-2xl text-primary-500 mr-2" />
+            <h1 className="text-xl font-display font-bold text-gray-800">BrydeGuide</h1>
           </div>
 
           {/* Progress Bar */}
           <div className="hidden md:flex items-center space-x-4">
             <div className="w-48 bg-gray-200 rounded-full h-2">
               <div
-                className="bg-sage-400 h-2 rounded-full transition-all duration-300"
+                className="bg-primary-500 h-2 rounded-full transition-all duration-300"
                 style={{ width: `${overallProgress}%` }}
               ></div>
             </div>
@@ -44,7 +44,6 @@ const Header = () => {
               <SafeIcon icon={FiUser} className="text-gray-400" />
               <span className="text-sm text-gray-700">{userProfile?.name}</span>
             </div>
-            
             <div className="flex items-center space-x-2">
               <button
                 className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
@@ -52,7 +51,6 @@ const Header = () => {
               >
                 <SafeIcon icon={FiSettings} />
               </button>
-              
               <button
                 onClick={signOut}
                 className="p-2 text-gray-400 hover:text-gray-600 transition-colors"

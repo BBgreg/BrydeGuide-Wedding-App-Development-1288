@@ -16,14 +16,14 @@ const AuthPage = () => {
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2">
             {/* Left side - Branding */}
-            <div className="bg-gradient-to-br from-sage-400 to-sage-600 p-8 lg:p-12 flex items-center justify-center">
+            <div className="bg-gradient-to-br from-primary-400 to-primary-600 p-8 lg:p-12 flex items-center justify-center">
               <div className="text-white text-center">
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
                 >
-                  <h2 className="text-4xl font-nunito font-bold mb-4">
+                  <h2 className="text-4xl font-display font-bold mb-4">
                     Stress-Free Wedding Planning
                   </h2>
                   <p className="text-xl opacity-90 mb-6">

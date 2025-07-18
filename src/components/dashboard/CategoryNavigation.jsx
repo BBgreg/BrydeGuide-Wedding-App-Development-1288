@@ -11,7 +11,7 @@ const CategoryNavigation = () => {
 
   return (
     <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6">
-      <h2 className="text-lg font-nunito font-semibold text-gray-800 mb-4">
+      <h2 className="text-lg font-display font-semibold text-gray-800 mb-4">
         Wedding Categories
       </h2>
       
@@ -30,7 +30,7 @@ const CategoryNavigation = () => {
               className={`
                 relative p-4 rounded-lg border-2 transition-all duration-200
                 ${isActive 
-                  ? 'border-sage-400 bg-sage-50' 
+                  ? 'border-primary-400 bg-primary-50' 
                   : 'border-gray-200 hover:border-gray-300'
                 }
                 ${isCompleted ? 'bg-green-50 border-green-200' : ''}
@@ -62,7 +62,7 @@ const CategoryNavigation = () => {
               {isActive && (
                 <motion.div
                   layoutId="activeCategory"
-                  className="absolute inset-0 bg-sage-100 rounded-lg -z-10"
+                  className="absolute inset-0 bg-primary-100 rounded-lg -z-10"
                   initial={false}
                   transition={{ type: "spring", stiffness: 500, damping: 30 }}
                 />
