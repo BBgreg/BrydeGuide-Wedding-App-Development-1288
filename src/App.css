@@ -1,10 +1,14 @@
 .App {
   min-height: 100vh;
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Cormorant Garamond', serif;
 }
 
 /* Custom scrollbar */
@@ -17,12 +21,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #9CAF88;
+  background: #dc6d4c;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #8ba070;
+  background: #c44e2e;
 }
 
 /* Text truncation utilities */
@@ -64,7 +68,7 @@ input[type="range"]::-webkit-slider-track {
 input[type="range"]::-webkit-slider-thumb {
   -webkit-appearance: none;
   appearance: none;
-  background: #9CAF88;
+  background: #dc6d4c;
   height: 20px;
   width: 20px;
   border-radius: 50%;
@@ -80,7 +84,7 @@ input[type="range"]::-moz-range-track {
 }
 
 input[type="range"]::-moz-range-thumb {
-  background: #9CAF88;
+  background: #dc6d4c;
   height: 20px;
   width: 20px;
   border-radius: 50%;
@@ -91,12 +95,8 @@ input[type="range"]::-moz-range-thumb {
 
 /* Animation classes */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 @keyframes slideUp {
@@ -111,12 +111,8 @@ input[type="range"]::-moz-range-thumb {
 }
 
 @keyframes pulseGentle {
-  0%, 100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.7;
-  }
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.7; }
 }
 
 .animate-fade-in {
@@ -133,7 +129,7 @@ input[type="range"]::-moz-range-thumb {
 
 /* Focus styles for accessibility */
 .focus-visible {
-  outline: 2px solid #9CAF88;
+  outline: 2px solid #dc6d4c;
   outline-offset: 2px;
 }
 

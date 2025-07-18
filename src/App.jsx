@@ -1,11 +1,12 @@
-import React from 'react'
-import { HashRouter as Router, Routes, Route } from 'react-router-dom'
-import { Toaster } from 'react-hot-toast'
-import { AuthProvider } from './contexts/AuthContext'
-import { AppProvider } from './contexts/AppContext'
-import ProtectedRoute from './components/common/ProtectedRoute'
-import Dashboard from './components/dashboard/Dashboard'
-import './App.css'
+import React from 'react';
+import { HashRouter as Router, Routes, Route } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import { AuthProvider } from './contexts/AuthContext';
+import { AppProvider } from './contexts/AppContext';
+import ProtectedRoute from './components/common/ProtectedRoute';
+import LandingPage from './pages/LandingPage';
+import Dashboard from './components/dashboard/Dashboard';
+import './App.css';
 
 function App() {
   return (
@@ -14,13 +15,13 @@ function App() {
         <Router>
           <div className="App">
             <Routes>
-              <Route path="/" element={
+              <Route path="/" element={<LandingPage />} />
+              <Route path="/dashboard" element={
                 <ProtectedRoute>
                   <Dashboard />
                 </ProtectedRoute>
               } />
             </Routes>
-            
             <Toaster
               position="top-right"
               toastOptions={{
@@ -31,7 +32,7 @@ function App() {
                 },
                 success: {
                   iconTheme: {
-                    primary: '#9CAF88',
+                    primary: '#dc6d4c',
                     secondary: '#fff',
                   },
                 },
@@ -41,7 +42,7 @@ function App() {
         </Router>
       </AppProvider>
     </AuthProvider>
-  )
+  );
 }
 
-export default App
+export default App;
