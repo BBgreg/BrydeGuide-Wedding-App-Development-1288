@@ -1,17 +1,38 @@
-import React, { useState } from 'react'
-import { motion } from 'framer-motion'
+import React, {useState, useEffect} from 'react'
+import {motion} from 'framer-motion'
+import {useLocation, useNavigate} from 'react-router-dom'
 import LoginForm from './LoginForm'
 import SignupForm from './SignupForm'
+import {useAuth} from '../../contexts/AuthContext'
 
-const AuthPage = () => {
-  const [isLogin, setIsLogin] = useState(true)
+const AuthPage = ({initialMode}) => {
+  const [isLogin, setIsLogin] = useState(initialMode !== "signup")
+  const {user} = useAuth()
+  const location = useLocation()
+  const navigate = useNavigate()
+  
+  useEffect(() => {
+    // If user is already logged in, redirect to dashboard
+    if (user) {
+      navigate('/dashboard')
+    }
+  }, [user, navigate])
+
+  useEffect(() => {
+    // Set mode based on URL path
+    if (location.pathname === '/signup') {
+      setIsLogin(false)
+    } else if (location.pathname === '/login') {
+      setIsLogin(true)
+    }
+  }, [location.pathname])
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-cream-50 to-sage-50 flex items-center justify-center p-4">
-      <motion.div
-        initial={{ opacity: 0, scale: 0.95 }}
-        animate={{ opacity: 1, scale: 1 }}
-        className="w-full max-w-4xl"
+      <motion.div 
+        initial={{opacity: 0, scale: 0.95}} 
+        animate={{opacity: 1, scale: 1}} 
+        className="w-full max-w-4xl" 
       >
         <div className="bg-white rounded-2xl shadow-xl overflow-hidden">
           <div className="grid grid-cols-1 lg:grid-cols-2">
@@ -19,9 +40,9 @@ const AuthPage = () => {
             <div className="bg-gradient-to-br from-primary-400 to-primary-600 p-8 lg:p-12 flex items-center justify-center">
               <div className="text-white text-center">
                 <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
+                  initial={{opacity: 0, y: 20}}
+                  animate={{opacity: 1, y: 0}}
+                  transition={{delay: 0.2}}
                 >
                   <h2 className="text-4xl font-display font-bold mb-4">
                     Stress-Free Wedding Planning

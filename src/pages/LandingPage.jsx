@@ -1,12 +1,24 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import SafeIcon from '../common/SafeIcon';
 import * as FiIcons from 'react-icons/fi';
+import { useAuth } from '../contexts/AuthContext';
 
 const { FiArrowRight, FiHeart, FiClock, FiSmile, FiCheck, FiStar, FiUsers } = FiIcons;
 
 const LandingPage = () => {
+  const { user } = useAuth();
+  const navigate = useNavigate();
+
+  const handleCategoryClick = (category) => {
+    if (user) {
+      navigate(`/vendors/${category}`);
+    } else {
+      navigate('/signup');
+    }
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-cream-50 via-white to-sage-50">
       {/* Navigation */}
@@ -14,22 +26,26 @@ const LandingPage = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center">
-              <SafeIcon icon={FiHeart} className="text-2xl text-primary-500 mr-2" />
-              <span className="text-xl font-display font-bold text-gray-900">BrydeGuide</span>
+              <Link to="/" className="flex items-center">
+                <SafeIcon icon={FiHeart} className="text-2xl text-primary-500 mr-2" />
+                <span className="text-xl font-display font-bold text-gray-900">BrydeGuide</span>
+              </Link>
             </div>
             <div className="flex items-center space-x-4">
-              <Link
-                to="/login"
-                className="text-gray-700 hover:text-primary-500 transition-colors"
-              >
-                Sign In
-              </Link>
-              <Link
-                to="/signup"
-                className="bg-primary-500 text-white px-4 py-2 rounded-full hover:bg-primary-600 transition-colors"
-              >
-                Get Started
-              </Link>
+              {user ? (
+                <Link to="/dashboard" className="bg-primary-500 text-white px-4 py-2 rounded-full hover:bg-primary-600 transition-colors">
+                  Dashboard
+                </Link>
+              ) : (
+                <>
+                  <Link to="/login" className="text-gray-700 hover:text-primary-500 transition-colors">
+                    Sign In
+                  </Link>
+                  <Link to="/signup" className="bg-primary-500 text-white px-4 py-2 rounded-full hover:bg-primary-600 transition-colors">
+                    Get Started
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -48,12 +64,10 @@ const LandingPage = () => {
                 transition={{ duration: 0.6 }}
               >
                 <h1 className="text-5xl md:text-6xl font-display font-bold text-gray-900 leading-tight">
-                  Your Dream Wedding,
-                  <span className="text-primary-500"> Stress-Free</span>
+                  Your Dream Wedding,<span className="text-primary-500"> Stress-Free</span>
                 </h1>
                 <p className="text-xl text-gray-600 mt-6">
-                  Experience the joy of planning with AI-curated vendors, 24-hour decision timers, 
-                  and emotional support features designed for Milwaukee couples.
+                  Experience the joy of planning with AI-curated vendors, 24-hour decision timers, and emotional support features designed for Milwaukee couples.
                 </p>
               </motion.div>
 
@@ -63,17 +77,10 @@ const LandingPage = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
-                <Link
-                  to="/signup"
-                  className="inline-flex items-center justify-center px-8 py-4 bg-primary-500 text-white rounded-full font-semibold hover:bg-primary-600 transition-colors shadow-lg hover:shadow-xl"
-                >
-                  Start Planning Free
-                  <SafeIcon icon={FiArrowRight} className="ml-2" />
+                <Link to="/signup" className="inline-flex items-center justify-center px-8 py-4 bg-primary-500 text-white rounded-full font-semibold hover:bg-primary-600 transition-colors shadow-lg hover:shadow-xl">
+                  Start Planning Free <SafeIcon icon={FiArrowRight} className="ml-2" />
                 </Link>
-                <Link
-                  to="/login"
-                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-primary-500 text-primary-500 rounded-full font-semibold hover:bg-primary-50 transition-colors"
-                >
+                <Link to="/login" className="inline-flex items-center justify-center px-8 py-4 border-2 border-primary-500 text-primary-500 rounded-full font-semibold hover:bg-primary-50 transition-colors">
                   Sign In
                 </Link>
               </motion.div>
@@ -108,14 +115,10 @@ const LandingPage = () => {
               className="relative"
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img
-                  src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80"
-                  alt="Beautiful wedding ceremony"
-                  className="w-full h-[500px] object-cover"
-                />
+                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80" alt="Beautiful wedding ceremony" className="w-full h-[500px] object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
-              
+
               {/* Floating Elements */}
               <motion.div
                 animate={{ y: [-10, 10, -10] }}
@@ -127,7 +130,7 @@ const LandingPage = () => {
                   <span className="text-sm font-medium">3 Perfect Matches</span>
                 </div>
               </motion.div>
-              
+
               <motion.div
                 animate={{ y: [10, -10, 10] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
@@ -156,19 +159,19 @@ const LandingPage = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <FeatureCard 
+            <FeatureCard
               icon={FiHeart}
               title="AI-Curated Vendors"
               description="Get exactly 3 perfectly matched vendor options per category, aligned with your style, budget, and preferences."
               color="primary"
             />
-            <FeatureCard 
+            <FeatureCard
               icon={FiClock}
               title="24-Hour Decision Timers"
               description="Our gentle decision timers help you make confident choices without overwhelm or decision fatigue."
               color="sage"
             />
-            <FeatureCard 
+            <FeatureCard
               icon={FiSmile}
               title="Emotional Support"
               description="Track your planning journey with mood check-ins and receive personalized support when you need it most."
@@ -192,30 +195,40 @@ const LandingPage = () => {
 
           <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-4">
             {[
-              { name: 'Venues', icon: '🏛️' },
-              { name: 'Wedding Planners', icon: '👰' },
-              { name: 'Photography', icon: '📸' },
-              { name: 'Videography', icon: '🎥' },
-              { name: 'Catering', icon: '🍽️' },
-              { name: 'DJ Services', icon: '🎧' },
-              { name: 'Lighting', icon: '💡' },
-              { name: 'Photo Booth', icon: '📷' },
-              { name: 'Florists', icon: '🌸' },
-              { name: 'Cake', icon: '🎂' },
-              { name: 'Transportation', icon: '🚗' },
-              { name: 'Officiants', icon: '👨‍💼' }
+              { name: 'Venues', icon: '🏛️', id: 'venue' },
+              { name: 'Wedding Planners', icon: '👰', id: 'wedding_planner' },
+              { name: 'Photography', icon: '📸', id: 'photography' },
+              { name: 'Videography', icon: '🎥', id: 'videography' },
+              { name: 'Catering', icon: '🍽️', id: 'catering' },
+              { name: 'DJ Services', icon: '🎧', id: 'dj' },
+              { name: 'Lighting', icon: '💡', id: 'lighting' },
+              { name: 'Photo Booth', icon: '📷', id: 'photo_booth' },
+              { name: 'Florists', icon: '🌸', id: 'florist' },
+              { name: 'Cake', icon: '🎂', id: 'cake' },
+              { name: 'Transportation', icon: '🚗', id: 'transportation' },
+              { name: 'Officiants', icon: '👨‍💼', id: 'officiant' }
             ].map((category, index) => (
               <motion.div
                 key={category.name}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-shadow"
+                className="bg-white rounded-xl p-6 text-center hover:shadow-lg transition-shadow cursor-pointer"
+                onClick={() => handleCategoryClick(category.id)}
               >
                 <div className="text-3xl mb-3">{category.icon}</div>
                 <h3 className="text-sm font-medium text-gray-900">{category.name}</h3>
               </motion.div>
             ))}
+          </div>
+          
+          <div className="text-center mt-8">
+            <Link 
+              to={user ? "/vendors" : "/signup"} 
+              className="inline-flex items-center justify-center px-6 py-3 bg-primary-500 text-white rounded-full font-medium hover:bg-primary-600 transition-colors"
+            >
+              View All Categories <SafeIcon icon={FiArrowRight} className="ml-2" />
+            </Link>
           </div>
         </div>
       </section>
@@ -238,8 +251,7 @@ const LandingPage = () => {
               to="/signup"
               className="inline-flex items-center px-8 py-4 bg-white text-primary-500 rounded-full font-semibold hover:bg-gray-50 transition-colors shadow-lg hover:shadow-xl text-lg"
             >
-              Create Your Free Account
-              <SafeIcon icon={FiArrowRight} className="ml-2" />
+              Create Your Free Account <SafeIcon icon={FiArrowRight} className="ml-2" />
             </Link>
           </motion.div>
         </div>
@@ -261,19 +273,19 @@ const LandingPage = () => {
             <div>
               <h4 className="font-semibold mb-4">Categories</h4>
               <ul className="space-y-2 text-gray-400">
-                <li>Venues</li>
-                <li>Photography</li>
-                <li>Catering</li>
-                <li>View All</li>
+                <li><Link to={user ? "/vendors/venue" : "/signup"} className="hover:text-white transition-colors">Venues</Link></li>
+                <li><Link to={user ? "/vendors/photography" : "/signup"} className="hover:text-white transition-colors">Photography</Link></li>
+                <li><Link to={user ? "/vendors/catering" : "/signup"} className="hover:text-white transition-colors">Catering</Link></li>
+                <li><Link to={user ? "/vendors" : "/signup"} className="hover:text-white transition-colors">View All</Link></li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold mb-4">Company</h4>
               <ul className="space-y-2 text-gray-400">
-                <li>About Us</li>
-                <li>Contact</li>
-                <li>Privacy Policy</li>
-                <li>Terms of Service</li>
+                <li><Link to="/about" className="hover:text-white transition-colors">About Us</Link></li>
+                <li><Link to="/contact" className="hover:text-white transition-colors">Contact</Link></li>
+                <li><Link to="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
+                <li><Link to="/terms" className="hover:text-white transition-colors">Terms of Service</Link></li>
               </ul>
             </div>
             <div>
@@ -300,7 +312,7 @@ const FeatureCard = ({ icon: Icon, title, description, color }) => {
   };
 
   return (
-    <motion.div 
+    <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       whileHover={{ y: -5 }}

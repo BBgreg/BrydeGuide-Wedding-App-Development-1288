@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { useAuth } from '../../contexts/AuthContext'
 import { useApp } from '../../contexts/AppContext'
 import { motion } from 'framer-motion'
@@ -21,8 +22,10 @@ const Header = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center">
-            <SafeIcon icon={FiHeart} className="text-2xl text-primary-500 mr-2" />
-            <h1 className="text-xl font-display font-bold text-gray-800">BrydeGuide</h1>
+            <Link to="/" className="flex items-center">
+              <SafeIcon icon={FiHeart} className="text-2xl text-primary-500 mr-2" />
+              <h1 className="text-xl font-display font-bold text-gray-800">BrydeGuide</h1>
+            </Link>
           </div>
 
           {/* Progress Bar */}
@@ -45,12 +48,9 @@ const Header = () => {
               <span className="text-sm text-gray-700">{userProfile?.name}</span>
             </div>
             <div className="flex items-center space-x-2">
-              <button
-                className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
-                title="Settings"
-              >
+              <Link to="/dashboard" className="p-2 text-gray-400 hover:text-gray-600 transition-colors" title="Dashboard">
                 <SafeIcon icon={FiSettings} />
-              </button>
+              </Link>
               <button
                 onClick={signOut}
                 className="p-2 text-gray-400 hover:text-gray-600 transition-colors"
