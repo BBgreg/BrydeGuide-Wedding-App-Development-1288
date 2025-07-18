@@ -215,7 +215,7 @@ const getVendorsForCategory = (category) => {
   const defaultVendors = [
     { id: 'd1', name: 'Premium Selection', description: 'Top-rated vendors in Milwaukee for your special day.', price: 'Custom Quotes', image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&h=300&fit=crop&q=80' },
     { id: 'd2', name: 'Elegant Options', description: 'Elegant and sophisticated services for your wedding.', price: 'Custom Quotes', image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&h=300&fit=crop&q=80' },
-    { id: 'd3', name: 'Budget-Friendly', description: 'Quality services that won't break your wedding budget.', price: 'Custom Quotes', image: 'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=400&h=300&fit=crop&q=80' },
+    { id: 'd3', name: 'Budget-Friendly', description: 'Quality services that won\'t break your wedding budget.', price: 'Custom Quotes', image: 'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=400&h=300&fit=crop&q=80' },
   ];
   
   return vendors[category] || defaultVendors;
