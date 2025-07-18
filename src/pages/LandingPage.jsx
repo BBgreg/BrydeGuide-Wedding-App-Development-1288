@@ -33,15 +33,24 @@ const LandingPage = () => {
             </div>
             <div className="flex items-center space-x-4">
               {user ? (
-                <Link to="/dashboard" className="bg-primary-500 text-white px-4 py-2 rounded-full hover:bg-primary-600 transition-colors">
+                <Link
+                  to="/dashboard"
+                  className="bg-primary-500 text-white px-4 py-2 rounded-full hover:bg-primary-600 transition-colors"
+                >
                   Dashboard
                 </Link>
               ) : (
                 <>
-                  <Link to="/login" className="text-gray-700 hover:text-primary-500 transition-colors">
+                  <Link
+                    to="/signin"
+                    className="text-gray-700 hover:text-primary-500 transition-colors"
+                  >
                     Sign In
                   </Link>
-                  <Link to="/signup" className="bg-primary-500 text-white px-4 py-2 rounded-full hover:bg-primary-600 transition-colors">
+                  <Link
+                    to="/signup"
+                    className="bg-primary-500 text-white px-4 py-2 rounded-full hover:bg-primary-600 transition-colors"
+                  >
                     Get Started
                   </Link>
                 </>
@@ -64,10 +73,12 @@ const LandingPage = () => {
                 transition={{ duration: 0.6 }}
               >
                 <h1 className="text-5xl md:text-6xl font-display font-bold text-gray-900 leading-tight">
-                  Your Dream Wedding,<span className="text-primary-500"> Stress-Free</span>
+                  Your Dream Wedding,
+                  <span className="text-primary-500"> Stress-Free</span>
                 </h1>
                 <p className="text-xl text-gray-600 mt-6">
-                  Experience the joy of planning with AI-curated vendors, 24-hour decision timers, and emotional support features designed for Milwaukee couples.
+                  Experience the joy of planning with AI-curated vendors, 24-hour decision timers, 
+                  and emotional support features designed for Milwaukee couples.
                 </p>
               </motion.div>
 
@@ -77,10 +88,17 @@ const LandingPage = () => {
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="flex flex-col sm:flex-row gap-4"
               >
-                <Link to="/signup" className="inline-flex items-center justify-center px-8 py-4 bg-primary-500 text-white rounded-full font-semibold hover:bg-primary-600 transition-colors shadow-lg hover:shadow-xl">
-                  Start Planning Free <SafeIcon icon={FiArrowRight} className="ml-2" />
+                <Link
+                  to="/signup"
+                  className="inline-flex items-center justify-center px-8 py-4 bg-primary-500 text-white rounded-full font-semibold hover:bg-primary-600 transition-colors shadow-lg hover:shadow-xl"
+                >
+                  Start Planning Free
+                  <SafeIcon icon={FiArrowRight} className="ml-2" />
                 </Link>
-                <Link to="/login" className="inline-flex items-center justify-center px-8 py-4 border-2 border-primary-500 text-primary-500 rounded-full font-semibold hover:bg-primary-50 transition-colors">
+                <Link
+                  to="/signin"
+                  className="inline-flex items-center justify-center px-8 py-4 border-2 border-primary-500 text-primary-500 rounded-full font-semibold hover:bg-primary-50 transition-colors"
+                >
                   Sign In
                 </Link>
               </motion.div>
@@ -115,10 +133,14 @@ const LandingPage = () => {
               className="relative"
             >
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80" alt="Beautiful wedding ceremony" className="w-full h-[500px] object-cover" />
+                <img
+                  src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?auto=format&fit=crop&w=800&q=80"
+                  alt="Beautiful wedding ceremony"
+                  className="w-full h-[500px] object-cover"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
               </div>
-
+              
               {/* Floating Elements */}
               <motion.div
                 animate={{ y: [-10, 10, -10] }}
@@ -130,7 +152,7 @@ const LandingPage = () => {
                   <span className="text-sm font-medium">3 Perfect Matches</span>
                 </div>
               </motion.div>
-
+              
               <motion.div
                 animate={{ y: [10, -10, 10] }}
                 transition={{ duration: 3, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
@@ -221,13 +243,14 @@ const LandingPage = () => {
               </motion.div>
             ))}
           </div>
-          
+
           <div className="text-center mt-8">
-            <Link 
-              to={user ? "/vendors" : "/signup"} 
+            <Link
+              to={user ? "/vendors" : "/signup"}
               className="inline-flex items-center justify-center px-6 py-3 bg-primary-500 text-white rounded-full font-medium hover:bg-primary-600 transition-colors"
             >
-              View All Categories <SafeIcon icon={FiArrowRight} className="ml-2" />
+              View All Categories
+              <SafeIcon icon={FiArrowRight} className="ml-2" />
             </Link>
           </div>
         </div>
@@ -251,7 +274,8 @@ const LandingPage = () => {
               to="/signup"
               className="inline-flex items-center px-8 py-4 bg-white text-primary-500 rounded-full font-semibold hover:bg-gray-50 transition-colors shadow-lg hover:shadow-xl text-lg"
             >
-              Create Your Free Account <SafeIcon icon={FiArrowRight} className="ml-2" />
+              Create Your Free Account
+              <SafeIcon icon={FiArrowRight} className="ml-2" />
             </Link>
           </motion.div>
         </div>

@@ -1,12 +1,14 @@
 import React from 'react';
-import {HashRouter as Router, Routes, Route, Navigate} from 'react-router-dom';
-import {Toaster} from 'react-hot-toast';
-import {AuthProvider} from './contexts/AuthContext';
-import {AppProvider} from './contexts/AppContext';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Toaster } from 'react-hot-toast';
+import { AuthProvider } from './contexts/AuthContext';
+import { AppProvider } from './contexts/AppContext';
+import Header from './components/common/Header';
 import ProtectedRoute from './components/common/ProtectedRoute';
 import LandingPage from './pages/LandingPage';
+import SignInPage from './pages/SignInPage';
+import SignUpPage from './pages/SignUpPage';
 import Dashboard from './components/dashboard/Dashboard';
-import AuthPage from './components/auth/AuthPage';
 import VendorCategories from './pages/VendorCategories';
 import AboutPage from './pages/AboutPage';
 import ContactPage from './pages/ContactPage';
@@ -20,10 +22,11 @@ function App() {
       <AppProvider>
         <Router>
           <div className="App">
+            <Header />
             <Routes>
               <Route path="/" element={<LandingPage />} />
-              <Route path="/login" element={<AuthPage />} />
-              <Route path="/signup" element={<AuthPage initialMode="signup" />} />
+              <Route path="/signin" element={<SignInPage />} />
+              <Route path="/signup" element={<SignUpPage />} />
               <Route path="/dashboard" element={
                 <ProtectedRoute>
                   <Dashboard />
@@ -41,8 +44,8 @@ function App() {
               {/* Redirect any unknown paths to home */}
               <Route path="*" element={<Navigate to="/" replace />} />
             </Routes>
-            <Toaster 
-              position="top-right" 
+            <Toaster
+              position="top-right"
               toastOptions={{
                 duration: 4000,
                 style: {
@@ -55,7 +58,7 @@ function App() {
                     secondary: '#fff',
                   },
                 },
-              }} 
+              }}
             />
           </div>
         </Router>

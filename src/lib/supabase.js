@@ -1,166 +1,120 @@
-import { createClient } from '@supabase/supabase-js'
+import { createClient } from '@supabase/supabase-js';
 
-const supabaseUrl = 'https://dquoljdyughwlgklgcvz.supabase.co'
-const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRxdW9samR5dWdod2xna2xnY3Z6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI3NDEwOTMsImV4cCI6MjA2ODMxNzA5M30.aot2bnY3lt-_fAbp79aElMDzCjbjb8s5ZQLHLL0WTG4'
+const supabaseUrl = 'https://dquoljdyughwlgklgcvz.supabase.co';
+const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRxdW9samR5dWdod2xna2xnY3Z6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI3NDEwOTMsImV4cCI6MjA2ODMxNzA5M30.aot2bnY3lt-_fAbp79aElMDzCjbjb8s5ZQLHLL0WTG4';
 
 if (!supabaseUrl || !supabaseAnonKey) {
-  throw new Error('Missing Supabase environment variables')
+  throw new Error('Missing Supabase environment variables');
 }
 
 export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
   auth: {
     persistSession: true,
     autoRefreshToken: true,
-    detectSessionInUrl: true
+    detectSessionInUrl: false
   }
-})
+});
 
 // Database helper functions
 export const createUser = async (userData) => {
   const { data, error } = await supabase
     .from('users')
     .insert([userData])
-    .select()
-  
-  if (error) throw error
-  return data[0]
-}
+    .select();
+
+  if (error) throw error;
+  return data[0];
+};
 
 export const getUserById = async (userId) => {
   const { data, error } = await supabase
     .from('users')
     .select('*')
     .eq('id', userId)
-    .single()
-  
-  if (error) throw error
-  return data
-}
+    .single();
+
+  if (error) throw error;
+  return data;
+};
 
 export const updateUser = async (userId, updates) => {
   const { data, error } = await supabase
     .from('users')
-    .update({ ...updates, updated_at: new Date() })
+    .update(updates)
     .eq('id', userId)
-    .select()
-  
-  if (error) throw error
-  return data[0]
-}
+    .select();
 
+  if (error) throw error;
+  return data[0];
+};
+
+// Vendor management
 export const getVendorsByCategory = async (category, filters = {}) => {
   let query = supabase
     .from('vendors')
     .select('*')
-    .eq('category', category)
-    .order('rating', { ascending: false })
-  
-  if (filters.minPrice) {
-    query = query.gte('price_minimum', filters.minPrice)
-  }
-  
-  if (filters.maxPrice) {
-    query = query.lte('price_maximum', filters.maxPrice)
-  }
-  
+    .eq('category', category);
+
   if (filters.maxDistance) {
-    query = query.lte('distance_from_milwaukee', filters.maxDistance)
+    query = query.lte('distance_from_milwaukee', filters.maxDistance);
   }
-  
+
   if (filters.minCapacity) {
-    query = query.gte('capacity_minimum', filters.minCapacity)
+    query = query.gte('capacity_maximum', filters.minCapacity);
   }
-  
+
   if (filters.maxCapacity) {
-    query = query.lte('capacity_maximum', filters.maxCapacity)
+    query = query.lte('capacity_minimum', filters.maxCapacity);
   }
-  
-  const { data, error } = await query
-  
-  if (error) throw error
-  return data || []
-}
 
-export const createCurationSession = async (sessionData) => {
-  const { data, error } = await supabase
-    .from('curation_sessions')
-    .insert([sessionData])
-    .select()
-  
-  if (error) throw error
-  return data[0]
-}
+  const { data, error } = await query;
+  if (error) throw error;
+  return data;
+};
 
-export const updateCurationSession = async (sessionId, updates) => {
-  const { data, error } = await supabase
-    .from('curation_sessions')
-    .update(updates)
-    .eq('id', sessionId)
-    .select()
-  
-  if (error) throw error
-  return data[0]
-}
-
+// Decision management
 export const saveUserDecision = async (decisionData) => {
   const { data, error } = await supabase
     .from('user_decisions')
     .insert([decisionData])
-    .select()
-  
-  if (error) throw error
-  return data[0]
-}
+    .select();
 
-export const updateMoodTracking = async (moodData) => {
-  const { data, error } = await supabase
-    .from('mood_tracking')
-    .insert([moodData])
-    .select()
-  
-  if (error) throw error
-  return data[0]
-}
+  if (error) throw error;
+  return data[0];
+};
 
 export const getUserDecisions = async (userId) => {
   const { data, error } = await supabase
     .from('user_decisions')
-    .select(`
-      *,
-      vendors (
-        business_name,
-        category,
-        price_minimum,
-        price_maximum,
-        portfolio_images
-      )
-    `)
-    .eq('user_id', userId)
-    .order('decision_date', { ascending: false })
-  
-  if (error) throw error
-  return data || []
-}
-
-export const getUserPreferences = async (userId) => {
-  const { data, error } = await supabase
-    .from('user_preferences')
     .select('*')
     .eq('user_id', userId)
-  
-  if (error) throw error
-  return data || []
-}
+    .order('created_at', { ascending: false });
 
-export const saveUserPreferences = async (preferencesData) => {
+  if (error) throw error;
+  return data;
+};
+
+// Curation sessions
+export const createCurationSession = async (sessionData) => {
   const { data, error } = await supabase
-    .from('user_preferences')
-    .upsert(preferencesData)
-    .select()
-  
-  if (error) throw error
-  return data[0]
-}
+    .from('curation_sessions')
+    .insert([sessionData])
+    .select();
+
+  if (error) throw error;
+  return data[0];
+};
+
+// Mood tracking
+export const updateMoodTracking = async (moodData) => {
+  const { data, error } = await supabase
+    .from('mood_tracking')
+    .insert([moodData])
+    .select();
+
+  if (error) throw error;
+  return data[0];
+};
 
 export const getMoodHistory = async (userId, limit = 30) => {
   const { data, error } = await supabase
@@ -168,87 +122,43 @@ export const getMoodHistory = async (userId, limit = 30) => {
     .select('*')
     .eq('user_id', userId)
     .order('check_in_date', { ascending: false })
-    .limit(limit)
-  
-  if (error) throw error
-  return data || []
-}
+    .limit(limit);
 
-export const getCurationSessions = async (userId, category = null) => {
-  let query = supabase
-    .from('curation_sessions')
-    .select('*')
-    .eq('user_id', userId)
-    .order('timer_start', { ascending: false })
-  
-  if (category) {
-    query = query.eq('category', category)
-  }
-  
-  const { data, error } = await query
-  
-  if (error) throw error
-  return data || []
-}
+  if (error) throw error;
+  return data;
+};
 
-// Realtime subscriptions
+// Real-time subscriptions
 export const subscribeToUserData = (userId, callback) => {
   const channel = supabase
-    .channel('user-data')
-    .on('postgres_changes', 
-      { 
-        event: '*', 
-        schema: 'public', 
-        table: 'users',
-        filter: `id=eq.${userId}` 
-      }, 
-      callback
-    )
-    .on('postgres_changes', 
-      { 
-        event: '*', 
-        schema: 'public', 
+    .channel('user_data_changes')
+    .on(
+      'postgres_changes',
+      {
+        event: '*',
+        schema: 'public',
         table: 'user_decisions',
-        filter: `user_id=eq.${userId}` 
-      }, 
+        filter: `user_id=eq.${userId}`
+      },
       callback
     )
-    .on('postgres_changes', 
-      { 
-        event: '*', 
-        schema: 'public', 
+    .on(
+      'postgres_changes',
+      {
+        event: '*',
+        schema: 'public',
         table: 'mood_tracking',
-        filter: `user_id=eq.${userId}` 
-      }, 
+        filter: `user_id=eq.${userId}`
+      },
       callback
     )
-    .subscribe()
-  
-  return channel
-}
+    .subscribe();
+
+  return channel;
+};
 
 export const unsubscribeFromUserData = (channel) => {
-  supabase.removeChannel(channel)
-}
-
-// Auth helpers
-export const signInWithGoogle = async () => {
-  const { data, error } = await supabase.auth.signInWithOAuth({
-    provider: 'google',
-    options: {
-      redirectTo: `${window.location.origin}/`
-    }
-  })
-  
-  if (error) throw error
-  return data
-}
-
-export const resetPassword = async (email) => {
-  const { data, error } = await supabase.auth.resetPasswordForEmail(email, {
-    redirectTo: `${window.location.origin}/reset-password`
-  })
-  
-  if (error) throw error
-  return data
-}
+  if (channel) {
+    supabase.removeChannel(channel);
+  }
+};

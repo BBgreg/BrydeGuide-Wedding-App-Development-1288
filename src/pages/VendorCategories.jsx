@@ -190,7 +190,7 @@ const getCategoryDescription = (categoryId) => {
     music: "Live musicians to add elegance to your ceremony.",
     cake: "Exquisite cakes and desserts for your reception.",
     transportation: "Stylish transportation for you and your guests.",
-    officiant: "Engaging officiants to perform your ceremony.",
+    officiant: "Engaging officiants to perform your ceremony."
   };
   
   return descriptions[categoryId] || "Find the perfect vendors for your wedding day.";
@@ -200,22 +200,76 @@ const getCategoryDescription = (categoryId) => {
 const getVendorsForCategory = (category) => {
   const vendors = {
     venue: [
-      { id: 'v1', name: 'St. James 1868', description: 'Historic venue in downtown Milwaukee with timeless elegance.', price: '$8,000-$15,000', image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&h=300&fit=crop&q=80' },
-      { id: 'v2', name: 'Discovery World', description: 'Modern lakefront venue with stunning views of Lake Michigan.', price: '$10,000-$20,000', image: 'https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=400&h=300&fit=crop&q=80' },
-      { id: 'v3', name: 'The Atrium', description: 'Elegant venue with beautiful natural lighting and garden settings.', price: '$6,000-$12,000', image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400&h=300&fit=crop&q=80' },
+      {
+        id: 'v1',
+        name: 'St. James 1868',
+        description: 'Historic venue in downtown Milwaukee with timeless elegance.',
+        price: '$8,000-$15,000',
+        image: 'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=400&h=300&fit=crop&q=80'
+      },
+      {
+        id: 'v2',
+        name: 'Discovery World',
+        description: 'Modern lakefront venue with stunning views of Lake Michigan.',
+        price: '$10,000-$20,000',
+        image: 'https://images.unsplash.com/photo-1540039155733-5bb30b53aa14?w=400&h=300&fit=crop&q=80'
+      },
+      {
+        id: 'v3',
+        name: 'The Atrium',
+        description: 'Elegant venue with beautiful natural lighting and garden settings.',
+        price: '$6,000-$12,000',
+        image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=400&h=300&fit=crop&q=80'
+      },
     ],
     photography: [
-      { id: 'p1', name: 'Sarah Marie Photography', description: 'Capturing authentic moments with a modern, romantic approach.', price: '$2,500-$4,500', image: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&h=300&fit=crop&q=80' },
-      { id: 'p2', name: 'Timeless Images', description: 'Classic photography style with attention to detail.', price: '$3,000-$5,000', image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=400&h=300&fit=crop&q=80' },
-      { id: 'p3', name: 'Moment Capturer', description: 'Candid, journalistic approach to wedding photography.', price: '$2,000-$4,000', image: 'https://images.unsplash.com/photo-1494783367193-149034c05e8f?w=400&h=300&fit=crop&q=80' },
+      {
+        id: 'p1',
+        name: 'Sarah Marie Photography',
+        description: 'Capturing authentic moments with a modern, romantic approach.',
+        price: '$2,500-$4,500',
+        image: 'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=400&h=300&fit=crop&q=80'
+      },
+      {
+        id: 'p2',
+        name: 'Timeless Images',
+        description: 'Classic photography style with attention to detail.',
+        price: '$3,000-$5,000',
+        image: 'https://images.unsplash.com/photo-1537633552985-df8429e8048b?w=400&h=300&fit=crop&q=80'
+      },
+      {
+        id: 'p3',
+        name: 'Moment Capturer',
+        description: 'Candid, journalistic approach to wedding photography.',
+        price: '$2,000-$4,000',
+        image: 'https://images.unsplash.com/photo-1494783367193-149034c05e8f?w=400&h=300&fit=crop&q=80'
+      },
     ],
   };
   
   // Default sample data for categories without specific examples
   const defaultVendors = [
-    { id: 'd1', name: 'Premium Selection', description: 'Top-rated vendors in Milwaukee for your special day.', price: 'Custom Quotes', image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&h=300&fit=crop&q=80' },
-    { id: 'd2', name: 'Elegant Options', description: 'Elegant and sophisticated services for your wedding.', price: 'Custom Quotes', image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&h=300&fit=crop&q=80' },
-    { id: 'd3', name: 'Budget-Friendly', description: 'Quality services that won\'t break your wedding budget.', price: 'Custom Quotes', image: 'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=400&h=300&fit=crop&q=80' },
+    {
+      id: 'd1',
+      name: 'Premium Selection',
+      description: 'Top-rated vendors in Milwaukee for your special day.',
+      price: 'Custom Quotes',
+      image: 'https://images.unsplash.com/photo-1519225421980-715cb0215aed?w=400&h=300&fit=crop&q=80'
+    },
+    {
+      id: 'd2',
+      name: 'Elegant Options',
+      description: 'Elegant and sophisticated services for your wedding.',
+      price: 'Custom Quotes',
+      image: 'https://images.unsplash.com/photo-1511795409834-ef04bbd61622?w=400&h=300&fit=crop&q=80'
+    },
+    {
+      id: 'd3',
+      name: 'Budget-Friendly',
+      description: 'Quality services that won\'t break your wedding budget.',
+      price: 'Custom Quotes',
+      image: 'https://images.unsplash.com/photo-1469371670807-013ccf25f16a?w=400&h=300&fit=crop&q=80'
+    },
   ];
   
   return vendors[category] || defaultVendors;
